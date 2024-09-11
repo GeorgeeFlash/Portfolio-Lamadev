@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navbar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,16 +26,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className="min-h-screen">
       <body
         className={cn(
           `${geistSans.variable} ${geistMono.variable} antialiased`,
-          "relative h-full font-sans"
+          "w-screen h-full bg-gradient-to-b from-blue-50 to-red-100"
         )}
       >
-        <main className="relative flex flex-col min-h-screen">
-          <Navbar />
-          <div className="flex-grow flex-1">{children}</div>
+        <main className="h-full">
+          <div className="h-24">
+            <Navbar />
+          </div>
+          <div className="h-full pt-10">{children}</div>
         </main>
       </body>
     </html>

@@ -1,80 +1,83 @@
+"use client";
+
+import { Facebook, Github, Instagram, Linkedin } from "lucide-react";
 import Link from "next/link";
-import MaxWidthWrapper from "./MaxWidthWrapper";
-import { Icons } from "./Icons";
-import NavItems from "./NavItems";
-import { buttonVariants } from "./ui/button";
-import Cart from "./Cart";
+import React, { useState } from "react";
+import NavLink from "./navLink";
+
+const links = [
+  { url: "/", title: "Home" },
+  { url: "/about", title: "About" },
+  { url: "/portfolio", title: "Portfolio" },
+  { url: "/contact", title: "Contact" },
+];
 
 const Navbar = () => {
-  const user = null;
+  const [open, setOpen] = useState(false);
 
   return (
-    <div className="bg-white sticky z-50 top-0 inset-x-0 h-16">
-      <header className="relative bg-white">
-        <MaxWidthWrapper>
-          <div className="border-b border-gray-200">
-            <div className="flex h-16 items-center">
-              {/* TODO: Mobile nav */}
+    <div className="h-full flex items-center justify-between px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48 text-xl">
+      {/* LINKS */}
+      <div className="hidden md:flex gap-4 w-1/3">
+        {links.map((link) => (
+          <NavLink key={link.title} link={link} />
+        ))}
+      </div>
+      {/* LOGO */}
+      <div className="md:hidden lg:flex lg:w-1/3 lg:justify-center">
+        <Link
+          href={"/"}
+          className="text-sm bg-black rounded-md p-1 font-semibold flex items-center justify-center"
+        >
+          <span className="text-white mr-1">Georgee</span>
+          <span className="w-12 h-8 rounded bg-white text-black flex items-center justify-center">
+            .Flash
+          </span>
+        </Link>
+      </div>
 
-              <div className="ml-4 flex lg:ml-0">
-                <Link href={"/"}>
-                  <Icons.logo className="h-10 w-10 " />
-                </Link>
-              </div>
+      {/* SOCIALS */}
+      <div className="hidden md:flex gap-4 w-1/3">
+        <Link href={"#"}>
+          <Github size={24} className="text-slate-800" />
+        </Link>
+        <Link href={"#"}>
+          <Facebook size={24} className="text-blue-700" />
+        </Link>
+        <Link href={"#"}>
+          <Instagram size={24} className="text-pink-600" />
+        </Link>
+        <Link href={"#"}>
+          <Linkedin
+            size={26}
+            className="text-white border bg-blue-500 p-1 rounded-md"
+          />
+        </Link>
+      </div>
 
-              <div className="hidden z-50 lg:ml-8 lg:block lg:self-stretch">
-                <NavItems />
-              </div>
+      {/* RESPONSIVE MENU */}
+      <div className="md:hidden">
+        {/* MENU BUTTON */}
+        <button
+          className="w-10 h-8 flex flex-col justify-between z-50 relative"
+          onClick={() => setOpen((prev) => !prev)}
+        >
+          <div className="w-10 h-1 bg-white rounded"></div>
+          <div className="w-10 h-1 bg-white rounded"></div>
+          <div className="w-10 h-1 bg-white rounded"></div>
+        </button>
 
-              <div className="ml-auto flex items-center">
-                <div
-                  className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6
-                "
-                >
-                  {user ? null : (
-                    <Link
-                      href={"/sign-in"}
-                      className={buttonVariants({ variant: "ghost" })}
-                    >
-                      Sign in
-                    </Link>
-                  )}
-                  {user ? null : (
-                    <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                  )}
-                  {user ? (
-                    <p className=""></p>
-                  ) : (
-                    <Link
-                      href={"/sign-up"}
-                      className={buttonVariants({ variant: "ghost" })}
-                    >
-                      Create account
-                    </Link>
-                  )}
-
-                  {user ? (
-                    <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                  ) : null}
-
-                  {user ? null : (
-                    <div className="flex lg:ml-6">
-                      <span
-                        className="h-6 w-px bg-gray-200"
-                        aria-hidden="true"
-                      />
-                    </div>
-                  )}
-
-                  <div className="ml-4 flow-root lg:ml-6">
-                    <Cart />
-                  </div>
-                </div>
-              </div>
-            </div>
+        {/* MENU LIST */}
+        {open && (
+          <div className="absolute top-0 left-0 w-screen h-screen bg-black text-white flex flex-col items-center justify-center gap-8 text-4xl">
+            {links.map((link) => (
+              <Link key={link.title} href={link.url}>
+                {link.title}
+              </Link>
+            ))}
           </div>
-        </MaxWidthWrapper>
-      </header>
+        )}
+      </div>
     </div>
   );
 };
