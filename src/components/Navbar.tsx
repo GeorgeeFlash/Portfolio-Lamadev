@@ -3,7 +3,10 @@
 import { Facebook, Github, Instagram, Linkedin } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
+import { motion } from "framer-motion";
+
 import NavLink from "./navLink";
+import WidthWrapper from "@/components/width-wrapper";
 
 const links = [
   { url: "/", title: "Home" },
@@ -15,10 +18,63 @@ const links = [
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
+  const topVariants = {
+    closed: {
+      rotate: 0,
+    },
+    opened: {
+      rotate: 45,
+      backgroundColor: "rgb(255, 255, 255)",
+    },
+  };
+
+  const centerVariants = {
+    closed: {
+      opacity: 1,
+    },
+    opened: {
+      opacity: 0,
+    },
+  };
+
+  const bottomVariants = {
+    closed: {
+      rotate: 0,
+    },
+    opened: {
+      rotate: -45,
+      backgroundColor: "rgb(255, 255, 255)",
+    },
+  };
+
+  const listVariants = {
+    closed: {
+      x: "100vw",
+    },
+    opened: {
+      x: 0,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const listItemVariants = {
+    closed: {
+      x: -10,
+      opacity: 0,
+    },
+    opened: {
+      x: 0,
+      opacity: 1,
+    },
+  };
+
   return (
-    <div className="h-full flex items-center justify-between px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48 text-xl">
+    <WidthWrapper className="h-full z-20 flex items-center justify-between text-xl">
       {/* LINKS */}
-      <div className="hidden md:flex gap-4 w-1/3">
+      <div className="hidden md:flex gap-4 lg:w-1/3">
         {links.map((link) => (
           <NavLink key={link.title} link={link} />
         ))}
@@ -31,14 +87,14 @@ const Navbar = () => {
         >
           <span className="text-white mr-1">Georgee</span>
           <span className="w-12 h-8 rounded bg-white text-black flex items-center justify-center">
-            .Flash
+            Flash
           </span>
         </Link>
       </div>
 
       {/* SOCIALS */}
-      <div className="hidden md:flex gap-4 w-1/3">
-        <Link href={"#"}>
+      <div className="hidden md:flex gap-4 lg:w-1/3">
+        <Link href={"https://github.com/GeorgeeFlash/"}>
           <Github size={24} className="text-slate-800" />
         </Link>
         <Link href={"#"}>
@@ -59,26 +115,47 @@ const Navbar = () => {
       <div className="md:hidden">
         {/* MENU BUTTON */}
         <button
-          className="w-10 h-8 flex flex-col justify-between z-50 relative"
+          className="w-10 h-8 flex outline-none flex-col justify-between z-50 relative"
           onClick={() => setOpen((prev) => !prev)}
         >
-          <div className="w-10 h-1 bg-white rounded"></div>
-          <div className="w-10 h-1 bg-white rounded"></div>
-          <div className="w-10 h-1 bg-white rounded"></div>
+          <motion.div
+            variants={topVariants}
+            animate={open ? "opened" : "closed"}
+            className="w-10 h-1 bg-black rounded origin-left"
+          ></motion.div>
+          <motion.div
+            variants={centerVariants}
+            animate={open ? "opened" : "closed"}
+            className="w-10 h-1 bg-black rounded"
+          ></motion.div>
+          <motion.div
+            variants={bottomVariants}
+            animate={open ? "opened" : "closed"}
+            className="w-10 h-1 bg-black rounded origin-left"
+          ></motion.div>
         </button>
 
         {/* MENU LIST */}
         {open && (
-          <div className="absolute top-0 left-0 w-screen h-screen bg-black text-white flex flex-col items-center justify-center gap-8 text-4xl">
+          <motion.div
+            variants={listVariants}
+            initial="closed"
+            animate="opened"
+            className="absolute z-30 top-0 left-0 w-screen h-screen bg-black text-white flex flex-col items-center justify-center gap-8 text-4xl"
+          >
             {links.map((link) => (
-              <Link key={link.title} href={link.url}>
-                {link.title}
-              </Link>
+              <motion.div
+                variants={listItemVariants}
+                key={link.title}
+                className=""
+              >
+                <Link href={link.url}>{link.title}</Link>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
       </div>
-    </div>
+    </WidthWrapper>
   );
 };
 
