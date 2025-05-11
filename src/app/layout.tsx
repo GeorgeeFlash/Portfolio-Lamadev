@@ -26,20 +26,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  //bg-gradient-to-b from-blue-50 to-red-100
   return (
-    <html lang="en" className="h-ful">
+    <html lang="en" className="h-full">
       <body
         className={cn(
-          `${geistSans.variable} ${geistMono.variable} antialiased`,
-          "h-full bg-gradient-to-b from-blue-50 to-red-100",
+          `${geistSans.variable} ${geistMono.variable} antialiased flex flex-col`,
+          "h-full bg-blue-50",
           { "debug-screens": process.env.NODE_ENV === "development" }
         )}
       >
         <TransitionProvider>
-          <nav className="h-24 z-50">
+          <nav className="h-24 z-50 bg-green-100">
             <Navbar />
           </nav>
-          <main className=" pt-2 overflow-hidden">{children}</main>
+          <main className="pt-4 h-ful overflow-hidden">{children}</main>
         </TransitionProvider>
       </body>
     </html>

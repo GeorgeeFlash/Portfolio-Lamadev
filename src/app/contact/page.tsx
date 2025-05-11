@@ -19,14 +19,14 @@ const ContactPage = () => {
 
   return (
     <motion.div
-      className="h-[80vh] xl:h-[85vh] mb-10"
+      className="h-[80vh] lg:h-[85vh] pb-16"
       initial={{ y: "-200vh" }}
       animate={{ y: "0%" }}
       transition={{ duration: 1 }}
     >
-      <WidthWrapper className="h-full flex flex-col lg:flex-row text-4xl xl:text-6xl">
+      <WidthWrapper className="h-full flex flex-col justify-center lg:flex-row text-4xl xl:text-6xl">
         {/* TEXT CONTAINER */}
-        <div className="h-1/5 lg:h-full lg:w-1/3 mb-4 lg:mb-0 items-center justify-center">
+        <div className="lg:h-full lg:w-1/3 mb-10 lg:mb-0 items-center justify-center">
           {text.split("").map((letter, index) => (
             <motion.span
               key={index}
@@ -45,7 +45,7 @@ const ContactPage = () => {
         {/* FORM CONTAINER */}
         <form
           action=""
-          className="h-4/5 lg:h-full lg:w-2/3 bg-red-50 rounded-xl text-xl flex flex-col gap-8 justify-center p-16 lg:p-24"
+          className="lg:w-2/3 bg-red-50 rounded-xl text-xl flex flex-col gap-8 justify-center p-16 lg:p-24"
         >
           <div className="gap-4 flex flex-col">
             <label htmlFor="text" className="font-medium text-2xl">

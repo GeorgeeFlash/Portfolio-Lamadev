@@ -9,7 +9,7 @@ const WidthWrapper = ({
   className: string;
 }) => {
   return (
-    <div className={cn("px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48", className)}>
+    <div className={cn("px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20", className)}>
       {children}
     </div>
   );

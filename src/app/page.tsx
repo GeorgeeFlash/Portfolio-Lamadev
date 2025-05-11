@@ -11,33 +11,35 @@ import { cn } from "@/lib/utils";
 export default function Home() {
   return (
     <motion.div
-      className="h-full overflow-x-hidden"
+      className="h-screen overflow-hidden"
       initial={{ y: "-200%" }}
       animate={{ y: "0%" }}
       transition={{ duration: 1 }}
     >
-      <WidthWrapper className="h-screen flex flex-col lg:flex-row text-xl">
+      <WidthWrapper className="h-full flex flex-col items-center justify-center lg:flex-row lg:gap-x-10 text-xl">
         {/* IMAGE CONTAINER */}
-        <div className="h-1/2 lg:h-full z-10 lg:mr-4 lg:w-1/2 relative">
+        <div className="h-1/2 lg:h-[38rem] xl:h-[50rem] z-10 w-[25rem] lg:w-2/5 relative">
           <Image
             src={"/profile1.jpg"}
             alt="profile"
             fill
-            className="object-contain"
+            priority
+            sizes="(max-width: 765px) 100vw, (max-width: 1200px) 55vw, 33vw"
+            className="object-contain border-4 border-black p-1 rounded-md"
           />
         </div>
 
         {/* TEXT CONTAINER */}
-        <div className="h-1/2 lg:h-full lg:w-1/2 flex flex-col gap-8 items-center justify-center">
+        <div className="h-1/2 lg:h-full lg:w-3/5 flex flex-col gap-8 items-center justify-center">
           {/* TITLE */}
           {/* TODO: Change this. */}
-          <h1 className="text-4xl md:6xl font-bold">
+          <h1 className="text-4xl md:text-6xl xl:text-7xl font-bold tracking-tight leading-normal">
             Crafting Digital Experiences, Designing Tomorrow.
           </h1>
 
           {/* DESC */}
           {/* TODO: Change this. */}
-          <p className="md:text-2xl">
+          <p className="md:text-2xl xl:text-3xl">
             Welcome to my digital canvas, where innocation and creativity
             converge. With a keen eye for easthetics and a mastery of code, my
             porfolio showcases a diverse collection of projects that reflect my
@@ -46,14 +48,20 @@ export default function Home() {
 
           {/* BUTTONS */}
           <div className="w-full flex gap-4">
-            <Link href={"/portfolio"} className={cn("", buttonVariants())}>
+            <Link
+              href={"/portfolio"}
+              className={cn(
+                "lg:h-14 lg:w-36 lg:text-lg",
+                buttonVariants({ size: "lg" })
+              )}
+            >
               View My Work
             </Link>
             <Link
               href={"/contact"}
               className={cn(
-                "ring-1 ring-black",
-                buttonVariants({ variant: "ghost" })
+                "ring-1 ring-black lg:h-14 lg:w-32 lg:text-lg",
+                buttonVariants({ variant: "ghost", size: "lg" })
               )}
             >
               Contact Me
