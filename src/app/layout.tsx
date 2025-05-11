@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-ful">
       <body
         className={cn(
           `${geistSans.variable} ${geistMono.variable} antialiased`,
@@ -39,7 +39,7 @@ export default function RootLayout({
           <nav className="h-24 z-50">
             <Navbar />
           </nav>
-          <main className="h-full pt-2 overflow-hidden">{children}</main>
+          <main className=" pt-2 overflow-hidden">{children}</main>
         </TransitionProvider>
       </body>
     </html>

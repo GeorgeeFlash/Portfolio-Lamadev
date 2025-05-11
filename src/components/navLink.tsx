@@ -11,7 +11,7 @@ const NavLink = ({ link }: { link: { title: string; url: string } }) => {
   return (
     <Link
       href={link.url}
-      className={cn("rounded p-1", {
+      className={cn("rounded font-semibold p-1", {
         "bg-black text-white": link.url === pathname,
       })}
     >

@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 
 import NavLink from "./navLink";
 import WidthWrapper from "@/components/width-wrapper";
+import { cn } from "@/lib/utils";
 
 const links = [
   { url: "/", title: "Home" },
@@ -72,7 +73,7 @@ const Navbar = () => {
   };
 
   return (
-    <WidthWrapper className="h-full z-20 flex items-center justify-between text-xl">
+    <WidthWrapper className="h-full z-20 flex items-center justify-between text-xl bg-transparent">
       {/* LINKS */}
       <div className="hidden md:flex gap-4 lg:w-1/3">
         {links.map((link) => (
@@ -112,10 +113,13 @@ const Navbar = () => {
       </div>
 
       {/* RESPONSIVE MENU */}
-      <div className="md:hidden">
+      <div className={cn("md:hidden", { "z-50": open })}>
         {/* MENU BUTTON */}
         <button
-          className="w-10 h-8 flex outline-none flex-col justify-between z-50 relative"
+          className={cn(
+            "w-10 h-8 z-30 flex outline-none flex-col justify-between relative",
+            { "fixed top-7 right-5 ": open }
+          )}
           onClick={() => setOpen((prev) => !prev)}
         >
           <motion.div
@@ -141,7 +145,7 @@ const Navbar = () => {
             variants={listVariants}
             initial="closed"
             animate="opened"
-            className="absolute z-30 top-0 left-0 w-screen h-screen bg-black text-white flex flex-col items-center justify-center gap-8 text-4xl"
+            className="fixed top-0 left-0 w-screen h-full overflow-hidden bg-black text-white font-semibold flex flex-col items-center justify-center gap-8 text-4xl"
           >
             {links.map((link) => (
               <motion.div
@@ -149,7 +153,9 @@ const Navbar = () => {
                 key={link.title}
                 className=""
               >
-                <Link href={link.url}>{link.title}</Link>
+                <Link href={link.url} className="bg-red-20">
+                  {link.title}
+                </Link>
               </motion.div>
             ))}
           </motion.div>
