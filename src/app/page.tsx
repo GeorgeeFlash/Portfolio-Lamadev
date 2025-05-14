@@ -8,6 +8,8 @@ import WidthWrapper from "@/components/width-wrapper";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
+// TODO: Add your name
+
 export default function Home() {
   return (
     <motion.div
@@ -16,9 +18,9 @@ export default function Home() {
       animate={{ y: "0%" }}
       transition={{ duration: 1 }}
     >
-      <WidthWrapper className="h-full flex flex-col items-center justify-center lg:flex-row lg:gap-x-10 text-xl">
+      <WidthWrapper className="h-full flex flex-col items-center justify-center lg:flex-row lg:space-y-0 gap-10 text-xl">
         {/* IMAGE CONTAINER */}
-        <div className="h-1/2 lg:h-[38rem] xl:h-[50rem] z-10 w-[25rem] lg:w-2/5 relative">
+        <div className="h-1/3 md:h-1/2 lg:h-[38rem] xl:h-[40rem] z-10 w-[15rem] sm:w-[20rem] lg:w-2/5 relative">
           <Image
             src={"/profile1.jpg"}
             alt="profile"
@@ -30,16 +32,16 @@ export default function Home() {
         </div>
 
         {/* TEXT CONTAINER */}
-        <div className="h-1/2 lg:h-full lg:w-3/5 flex flex-col gap-8 items-center justify-center">
+        <div className="h-2/3 md:h-1/2 lg:h-full lg:w-3/5 flex flex-col gap-4 lg:gap-8 lg:items-center lg:justify-center">
           {/* TITLE */}
           {/* TODO: Change this. */}
-          <h1 className="text-4xl md:text-6xl xl:text-7xl font-bold tracking-tight leading-normal">
+          <h1 className="text-4xl md:text-6xl xl:text-7xl font-bold tracking-tight leading-tight lg:leading-snug xl:leading-normal">
             Crafting Digital Experiences, Designing Tomorrow.
           </h1>
 
           {/* DESC */}
           {/* TODO: Change this. */}
-          <p className="md:text-2xl xl:text-3xl">
+          <p className="text-lg md:text-2xl xl:text-3xl">
             Welcome to my digital canvas, where innocation and creativity
             converge. With a keen eye for easthetics and a mastery of code, my
             porfolio showcases a diverse collection of projects that reflect my

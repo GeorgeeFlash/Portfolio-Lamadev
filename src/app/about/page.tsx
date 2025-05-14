@@ -6,48 +6,71 @@ import WidthWrapper from "@/components/width-wrapper";
 import { Icons } from "@/components/Icons";
 import { ArrowDown } from "lucide-react";
 import Brain from "@/components/brain";
+import { experienceList, skillsList } from "@/lib/data";
 
-// const experienceList = [
-//   {
-//     title: "Senior JavaScript Engineer",
-//     description:
-//       "I lead a very creative team. We achived a lot of results together.",
-//     dataRange: "2024 - Present",
-//     company: "Apple",
-//   },
-// ];
+interface ExperienceListProps {
+  title: string;
+  description: string;
+  dateRange: string;
+  company: string;
+}
 
-// interface ExperienceListItemProps {
-//   title: string;
-//   description: string;
-//   dateRange: string;
-//   company: string;
-// }
+interface SkillListItemProps {
+  skill: string;
+}
 
-// TODO: figure this out.
-function ExperienceListItem() {
+type ExperienceListItemProps = ExperienceListProps & { index: number };
+
+function ExperienceListItem({
+  title,
+  description,
+  dateRange,
+  company,
+  index,
+}: ExperienceListItemProps) {
+  console.log("Index:", index);
   return (
     <div className="flex justify-between h-48">
+      {index % 2 != 0 && (
+        <div className="w-2/3 flex justify-start">
+          <div className="w-1/2"></div>
+          <div className="w-1/2 flex justify-center">
+            <div className="w-1 h-full bg-gray-600 rounded relative">
+              <div className="absolute -left-2 w-5 h-5 rounded-full ring-4 ring-red-400 bg-white" />
+            </div>
+          </div>
+        </div>
+      )}
       <div className="w-1/3">
         <div className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
-          Senior JavaScript Engineer
+          {title}
         </div>
-        <div className="p-3 text-sm italic">
-          My current emplyment. Way better than the position before!
-        </div>
+        <div className="p-3 text-sm italic">{description}</div>
         <div className="p-3 text-red-400 text-sm font-semibold">
-          2024 - Present
+          {dateRange}
         </div>
         <div className="p-1 rounded bg-white text-sm font-semibold w-fit">
-          Apple
+          {company}
         </div>
       </div>
-      <div className="w-1/3 flex justify-center">
-        <div className="w-1 h-full bg-gray-600 rounded relative">
-          <div className="absolute -left-2 w-5 h-5 rounded-full ring-4 ring-red-400 bg-white" />
+      {index % 2 == 0 && (
+        <div className="w-2/3 flex justify-start">
+          <div className="w-1/2 flex justify-center">
+            <div className="w-1 h-full bg-gray-600 rounded relative">
+              <div className="absolute -left-2 w-5 h-5 rounded-full ring-4 ring-red-400 bg-white" />
+            </div>
+          </div>
+          <div className="w-1/2"></div>
         </div>
-      </div>
-      <div className="w-1/3"></div>
+      )}
+    </div>
+  );
+}
+
+function SkillListItem({ skill }: SkillListItemProps) {
+  return (
+    <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
+      {skill}
     </div>
   );
 }
@@ -77,7 +100,7 @@ const AboutPage = () => {
           {/* BIOGRAPHY CONTAINER */}
           <div className="flex flex-col gap-10 justify-center">
             {/* BIOGRAPHY TITLE */}
-            <h1 className="font-bold text-4xl xl:text-5xl">BIOGRAPHY</h1>
+            <h1 className="heading">BIOGRAPHY</h1>
 
             {/* BIOGRAPHY TEXT */}
             {/* TODO: rewrite this - yourself. Make it shorter.*/}
@@ -90,19 +113,11 @@ const AboutPage = () => {
                 innovative solutions that positively transform the lives of
                 others.
               </p>
-              <p className="text-2xl">
-                I am a passionate and creative full-stack developer specializing
-                in Next.js. With strong proficiency in Next.js, Sanity,
-                TypeScript, JavaScript, Tailwind CSS, and PostgreSQL, I bring
-                efficiency, style, and attention to detail to every project. I
-                am also familiar with a range of technologies including FastAPI,
-                Canvas, Figma, Payload, Prisma, Express, tRPC, C, and Java.
-              </p>
             </div>
 
             {/* BIOGRAPHY QUOTE */}
             <span className="italic text-muted-foreground text-sm">
-              Doing great stuff just makes sense
+              Building cool stuff just makes sense 
             </span>
 
             {/* BIOGRAPHY SIGNATURE */}
@@ -130,7 +145,7 @@ const AboutPage = () => {
               initial={{ x: "-300px" }}
               animate={isSkillRefInView ? { x: 0 } : {}}
               transition={{ delay: 0.2 }}
-              className="font-bold text-2xl"
+              className="heading"
             >
               SKILLS
             </motion.h1>
@@ -142,51 +157,9 @@ const AboutPage = () => {
               transition={{ delay: 0.2 }}
               className="flex gap-4 flex-wrap"
             >
-              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
-                JavaScript
-              </div>
-              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
-                TypeScript
-              </div>
-              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
-                React.js
-              </div>
-              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
-                Next.js
-              </div>
-              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
-                SCSS
-              </div>
-              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
-                Tailwind CSS
-              </div>
-              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
-                MongoDB
-              </div>
-              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
-                PostgreSQL
-              </div>
-              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
-                Three.js
-              </div>
-              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
-                Framer Motion
-              </div>
-              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
-                Sanity CMS
-              </div>
-              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
-                Payload CMS
-              </div>
-              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
-                Prisma
-              </div>
-              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
-                GSAP
-              </div>
-              <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
-                FastApi
-              </div>
+              {skillsList.map((skillItem, index) => (
+                <SkillListItem key={index} skill={skillItem.skill} />
+              ))}
             </motion.div>
 
             {/* SCROLL ICON */}
@@ -207,7 +180,7 @@ const AboutPage = () => {
               initial={{ x: "-300px" }}
               animate={isExperienceRefInView ? { x: 0 } : {}}
               transition={{ delay: 0.2 }}
-              className="font-bold text-2xl mb-12"
+              className="heading mb-12"
             >
               EXPERIENCE
             </motion.h1>
@@ -220,67 +193,16 @@ const AboutPage = () => {
               className=""
             >
               {/* EXPERIENCE LIST ITEM */}
-              <ExperienceListItem />
-              {/* EXPERIENCE LIST ITEM */}
-              <div className="flex justify-between h-48">
-                <div className="w-1/3"></div>
-                <div className="w-1/3 flex justify-center">
-                  <div className="w-1 h-full bg-gray-600 rounded relative">
-                    <div className="absolute -left-2 w-5 h-5 rounded-full ring-4 ring-red-400 bg-white" />
-                  </div>
-                </div>
-                {/* RIGHT */}
-                <div className="w-1/3">
-                  {/* JOB TITLE */}
-                  <div className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
-                    Senior JavaScript Engineer
-                  </div>
-                  {/* JOB DESC */}
-                  <div className="p-3 text-sm italic">
-                    My current emplyment. Way better than the position before!
-                  </div>
-                  {/* JOB DATE */}
-                  <div className="p-3 text-red-400 text-sm font-semibold">
-                    2024 - Present
-                  </div>
-                  {/* JOB COMPANY */}
-                  <div className="p-1 rounded bg-white text-sm font-semibold w-fit">
-                    Apple
-                  </div>
-                </div>
-              </div>
-              {/* EXPERIENCE LIST ITEM */}
-              <div className="flex justify-between h-48">
-                {/* LEFT */}
-                <div className="w-1/3">
-                  {/* JOB TITLE */}
-                  <div className="bg-white p-3 font-semibold rounded-b-lg rounded-s-lg">
-                    Senior JavaScript Engineer
-                  </div>
-                  {/* JOB DESC */}
-                  <div className="p-3 text-sm italic">
-                    My current emplyment. Way better than the position before!
-                  </div>
-                  {/* JOB DATE */}
-                  <div className="p-3 text-red-400 text-sm font-semibold">
-                    2024 - Present
-                  </div>
-                  {/* JOB COMPANY */}
-                  <div className="p-1 rounded bg-white text-sm font-semibold w-fit">
-                    Apple
-                  </div>
-                </div>
-                {/* CENTER */}
-                <div className="w-1/3 flex justify-center">
-                  {/* LINE */}
-                  <div className="w-1 h-full bg-gray-600 rounded relative">
-                    {/* CIRCLE */}
-                    <div className="absolute -left-2 w-5 h-5 rounded-full ring-4 ring-red-400 bg-white" />
-                  </div>
-                </div>
-                {/* RIGHT */}
-                <div className="w-1/3"></div>
-              </div>
+              {experienceList.map((experience, index) => (
+                <ExperienceListItem
+                  key={index}
+                  index={index}
+                  title={experience.title}
+                  description={experience.description}
+                  dateRange={experience.dataRange}
+                  company={experience.company}
+                />
+              ))}
             </motion.div>
           </div>
         </WidthWrapper>

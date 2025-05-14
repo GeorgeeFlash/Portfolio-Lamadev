@@ -1,6 +1,12 @@
 "use client";
 
-import { Facebook, Github, Instagram, Linkedin } from "lucide-react";
+import {
+  Facebook,
+  Github,
+  Instagram,
+  Linkedin,
+  LucideIcon,
+} from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
@@ -14,6 +20,29 @@ const links = [
   { url: "/about", title: "About" },
   { url: "/portfolio", title: "Portfolio" },
   { url: "/contact", title: "Contact" },
+];
+
+const socials = [
+  {
+    social: Github,
+    link: "https://github.com/GeorgeeFlash/",
+    className: "text-stone-950",
+  },
+  {
+    social: Linkedin,
+    link: "https://linkedin.com/GeorgeeFlash/",
+    className: "text-white border bg-blue-500 p-1 rounded-md",
+  },
+  {
+    social: Facebook,
+    link: "https://facebook.com/GeorgeeFlash/",
+    className: "text-blue-700",
+  },
+  {
+    social: Instagram,
+    link: "https://github.com/GeorgeeFlash/",
+    className: "text-pink-600",
+  },
 ];
 
 const Navbar = () => {
@@ -73,7 +102,7 @@ const Navbar = () => {
   };
 
   return (
-    <WidthWrapper className="h-full z-20 flex items-center justify-between text-xl bg-transparent">
+    <WidthWrapper className="h-full w-full z-20 flex items-center justify-between text-xl">
       {/* LINKS */}
       <div className="hidden md:flex gap-4 lg:w-1/3">
         {links.map((link) => (
@@ -94,22 +123,15 @@ const Navbar = () => {
       </div>
 
       {/* SOCIALS */}
-      <div className="hidden md:flex gap-4 lg:w-1/3">
-        <Link href={"https://github.com/GeorgeeFlash/"}>
-          <Github size={24} className="text-slate-800" />
-        </Link>
-        <Link href={"#"}>
-          <Facebook size={24} className="text-blue-700" />
-        </Link>
-        <Link href={"#"}>
-          <Instagram size={24} className="text-pink-600" />
-        </Link>
-        <Link href={"#"}>
-          <Linkedin
-            size={26}
-            className="text-white border bg-blue-500 p-1 rounded-md"
+      <div className="hidden md:flex items-center justify-center gap-x-6 lg:w-1/3">
+        {socials.map((social, index) => (
+          <SocialItem
+            key={index}
+            social={social.social}
+            link={social.link}
+            className={social.className}
           />
-        </Link>
+        ))}
       </div>
 
       {/* RESPONSIVE MENU */}
@@ -163,6 +185,22 @@ const Navbar = () => {
       </div>
     </WidthWrapper>
   );
+
+  function SocialItem({
+    social: SocialIcon,
+    link,
+    className,
+  }: {
+    social: LucideIcon;
+    link: string;
+    className: string;
+  }) {
+    return (
+      <Link href={link}>
+        <SocialIcon size={24} className={cn("h-8 w-8", className)} />
+      </Link>
+    );
+  }
 };
 
 export default Navbar;

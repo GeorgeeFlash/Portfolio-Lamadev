@@ -65,4 +65,8 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .heading {
+    @apply font-bold text-4xl xl:text-5xl;
+  }
 }
