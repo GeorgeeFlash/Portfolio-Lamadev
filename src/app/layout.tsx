@@ -37,10 +37,10 @@ export default function RootLayout({
         )}
       >
         <TransitionProvider>
-          <nav className="h-24 z-50 bg-green-100">
+          <nav className="h-24 z-50 bg-green-100 top-0">
             <Navbar />
           </nav>
-          <main className="pt-4 h-ful overflow-hidden">{children}</main>
+          <main className="pt-4 h-ful">{children}</main>
         </TransitionProvider>
       </body>
     </html>

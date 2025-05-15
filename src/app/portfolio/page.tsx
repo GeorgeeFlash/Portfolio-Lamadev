@@ -51,16 +51,16 @@ const PortfolioPage = () => {
 
   return (
     <motion.div
-      className="h-full"
+      className="h-full overflow-clip"
       initial={{ y: "-200vh" }}
       animate={{ y: "0%" }}
       transition={{ duration: 1 }}
     >
-      <div className="h-[600vh]" ref={ref}>
+      <div className="h-[600vh] relative" ref={ref}>
         <div className="w-screen h-[calc(100vh-6rem)] flex items-center justify-center text-8xl text-center">
           My Works
         </div>
-        <div className="sticky top-0 flex h-screen gap-4 items-center overflow-hidden">
+        <div className="sticky top-0 flex h-screen gap-4 items-center bg-black/50">
           <motion.div style={{ x }} className="flex">
             <div
               className={cn(
@@ -71,38 +71,41 @@ const PortfolioPage = () => {
             {items.map((item) => (
               <div
                 className={cn(
-                  "h-screen w-screen flex items-center justify-center bg-gradient-to-r ",
+                  "h-screen w-screen px-2 lg:my-6 xl:my-10 md:px-4 lg:px-0 flex flex-col gap-8 text-white items-center justify-center bg-gradient-to-r ",
                   item.color
                 )}
                 key={item.id}
               >
-                <div className="flex flex-col gap-8 text-white">
-                  <h1 className="text-xl font-bold md:text-4xl lg:text-6xl xl:text-8xl">
-                    {item.title}
-                  </h1>
-                  <div className="relative w-80 h-56 md:w-96 md:h-64 lg:w-[500px] lg:h-[350px] xl:w-[600px] xl:h-[420px]">
-                    <Image src={item.img} alt={item.title} fill />
-                  </div>
-                  <p className="w-80 md:w-96 lg:w-[500px] lg:text-lg xl:w-[600px]">
-                    {item.desc}
-                  </p>
-                  <Link
-                    href={item.link}
-                    className={cn(
-                      "flex justify-end w-fit",
-                      buttonVariants({ variant: "secondary" })
-                    )}
-                  >
-                    See Demo
-                    <ArrowRight className="ml-1" />
-                  </Link>
+                <h1 className="text-xl font-bold md:text-4xl lg:text-6xl xl:text-8xl">
+                  {item.title}
+                </h1>
+                <div className="relative w-full h-56 md:w-96 md:h-64 lg:w-[500px] lg:h-[350px] xl:w-[600px] xl:h-[420px]">
+                  <Image
+                    src={item.img}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 765px) 100vw, (max-width: 1200px) 55vw, 33vw"
+                  />
                 </div>
+                <p className="w-full md:w-96 lg:w-[500px] xl:w-[600px] text-sm lg:text-lg px- justify-start">
+                  {item.desc}
+                </p>
+                <Link
+                  href={item.link}
+                  className={cn(
+                    "flex items-start w-fit",
+                    buttonVariants({ variant: "secondary" })
+                  )}
+                >
+                  See Demo
+                  <ArrowRight className="ml-1" />
+                </Link>
               </div>
             ))}
           </motion.div>
         </div>
       </div>
-      <div className="w-screen h-screen flex flex-col gap-16 items-center justify-center text-center">
+      <div className="w-full overflow-cli h-screen flex flex-col gap-16 items-center justify-center text-center">
         <h1 className="text-8xl">Do you have a project?</h1>
         <div className="relative">
           <motion.svg

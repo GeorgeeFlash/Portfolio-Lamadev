@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { motion, useInView, useScroll } from "framer-motion";
 import WidthWrapper from "@/components/width-wrapper";
 import { Icons } from "@/components/Icons";
 import { ArrowDown } from "lucide-react";
-import Brain from "@/components/brain";
+import Brain from "@/components/brain1";
 import { experienceList, skillsList } from "@/lib/data";
 
 interface ExperienceListProps {
@@ -28,7 +28,6 @@ function ExperienceListItem({
   company,
   index,
 }: ExperienceListItemProps) {
-  console.log("Index:", index);
   return (
     <div className="flex justify-between h-48">
       {index % 2 != 0 && (
@@ -69,19 +68,26 @@ function ExperienceListItem({
 
 function SkillListItem({ skill }: SkillListItemProps) {
   return (
-    <div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
+    <div className="rounded p-2 text-sm cursor-none bg-black text-white hover:bg-white hover:text-black hover:font-semibold transition-all duration-300">
       {skill}
     </div>
   );
 }
 
 const AboutPage = () => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: containerRef });
 
-  const { scrollYProgress } = useScroll({ container: containerRef });
+  useEffect(() => {
+    console.log("ScrollYProgress:", scrollYProgress);
+  }, [scrollYProgress]);
 
   const skillRef = useRef<HTMLDivElement | null>(null);
-  const isSkillRefInView = useInView(skillRef, { once: true });
+  const isSkillRefInView = useInView(skillRef, {
+    once: true,
+    margin: "-100px",
+  });
+  // const isSkillRefInView = useInView(skillRef, { margin: '-100px' });
 
   const experienceRef = useRef<HTMLDivElement | null>(null);
   const isExperienceRefInView = useInView(experienceRef, { once: true });
@@ -94,9 +100,9 @@ const AboutPage = () => {
       transition={{ duration: 1 }}
     >
       {/* CONTAINER */}
-      <div className="h-full relative pb-6 lg:flex" ref={containerRef}>
+      <div className="h-full w-full relative pb-6 lg:flex" ref={containerRef}>
         {/* TEXT CONTAINER */}
-        <WidthWrapper className="flex flex-col gap-24 md:gap-32 lg:gap-48 xl:gap-64 lg:w-2/3 !lg:pr-0 xl:1/2">
+        <WidthWrapper className="flex flex-col gap-24 md:gap-32 lg:gap-48 xl:gap-64 lg:w-2/3 xl:w-1/2 !lg:pr-0">
           {/* BIOGRAPHY CONTAINER */}
           <div className="flex flex-col gap-10 justify-center">
             {/* BIOGRAPHY TITLE */}
@@ -117,7 +123,7 @@ const AboutPage = () => {
 
             {/* BIOGRAPHY QUOTE */}
             <span className="italic text-muted-foreground text-sm">
-              Building cool stuff just makes sense 
+              Building cool stuff just makes sense
             </span>
 
             {/* BIOGRAPHY SIGNATURE */}
@@ -208,9 +214,12 @@ const AboutPage = () => {
         </WidthWrapper>
 
         {/* SVG CONTAINER */}
-        <div className="hidden lg:block w-1/3 xl:1/2 sticky top-0 z-40">
+        <div className="hidden lg:block w-1/3 xl:w-1/2 h-[700px] sticky top-0 z-40">
           <Brain scrollYProgress={scrollYProgress} />
         </div>
+        {/* <div className="hidden lg:block h-20 w-1/3 xl:w-1/2 top-0 right-0 sticky bg-black text-white font-semibold">
+          B
+        </div> */}
       </div>
     </motion.div>
   );
