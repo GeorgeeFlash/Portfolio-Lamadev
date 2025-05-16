@@ -1,19 +1,13 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/navbar";
 import TransitionProvider from "@/components/transitionProvider";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -31,13 +25,13 @@ export default function RootLayout({
     <html lang="en" className="h-full">
       <body
         className={cn(
-          `${geistSans.variable} ${geistMono.variable} antialiased flex flex-col`,
+          `${poppins.className} antialiased flex flex-col`,
           "h-full bg-blue-50",
           { "debug-screens": process.env.NODE_ENV === "development" }
         )}
       >
         <TransitionProvider>
-          <nav className="h-24 z-50 bg-green-100 top-0">
+          <nav className="h-[5rem] md:h-24 z-50 bg-green-100 top-0">
             <Navbar />
           </nav>
           <main className="pt-4 h-ful">{children}</main>

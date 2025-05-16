@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { motion, useInView, useScroll } from "framer-motion";
 import WidthWrapper from "@/components/width-wrapper";
 import { Icons } from "@/components/Icons";
@@ -77,10 +77,6 @@ function SkillListItem({ skill }: SkillListItemProps) {
 const AboutPage = () => {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: containerRef });
-
-  useEffect(() => {
-    console.log("ScrollYProgress:", scrollYProgress);
-  }, [scrollYProgress]);
 
   const skillRef = useRef<HTMLDivElement | null>(null);
   const isSkillRefInView = useInView(skillRef, {

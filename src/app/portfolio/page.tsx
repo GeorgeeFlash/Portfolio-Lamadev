@@ -57,8 +57,10 @@ const PortfolioPage = () => {
       transition={{ duration: 1 }}
     >
       <div className="h-[600vh] relative" ref={ref}>
-        <div className="w-screen h-[calc(100vh-6rem)] flex items-center justify-center text-8xl text-center">
-          My Works
+        <div className="w-screen h-[calc(100vh-6rem)] flex items-center justify-center text-8xl">
+          <p className="text-6xl tracking-tight leading-tight lg:text-7xl xl:text-8xl font-medium text-center">
+            My Works
+          </p>
         </div>
         <div className="sticky top-0 flex h-screen gap-4 items-center bg-black/50">
           <motion.div style={{ x }} className="flex">
@@ -71,7 +73,7 @@ const PortfolioPage = () => {
             {items.map((item) => (
               <div
                 className={cn(
-                  "h-screen w-screen px-2 lg:my-6 xl:my-10 md:px-4 lg:px-0 flex flex-col gap-8 text-white items-center justify-center bg-gradient-to-r ",
+                  "h-screen w-screen px-2 lg:py-6 xl:py-10 md:px-4 lg:px-0 flex flex-col gap-8 text-white items-center justify-center bg-gradient-to-r ",
                   item.color
                 )}
                 key={item.id}
@@ -106,7 +108,9 @@ const PortfolioPage = () => {
         </div>
       </div>
       <div className="w-full overflow-cli h-screen flex flex-col gap-16 items-center justify-center text-center">
-        <h1 className="text-8xl">Do you have a project?</h1>
+        <h1 className="text-6xl tracking-tight leading-tight md:text-4xl xl:text-8xl font-medium">
+          Let&apos;s work together!
+        </h1>
         <div className="relative">
           <motion.svg
             animate={{ rotate: 360 }}
