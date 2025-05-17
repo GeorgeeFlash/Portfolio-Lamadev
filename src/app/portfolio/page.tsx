@@ -59,7 +59,7 @@ const PortfolioPage = () => {
       <div className="h-[600vh] relative" ref={ref}>
         <div className="w-screen h-[calc(100vh-6rem)] flex items-center justify-center text-8xl">
           <p className="text-6xl tracking-tight leading-tight lg:text-7xl xl:text-8xl font-medium text-center">
-            My Works
+            My Work
           </p>
         </div>
         <div className="sticky top-0 flex h-screen gap-4 items-center bg-black/50">
@@ -108,7 +108,7 @@ const PortfolioPage = () => {
         </div>
       </div>
       <div className="w-full overflow-cli h-screen flex flex-col gap-16 items-center justify-center text-center">
-        <h1 className="text-6xl tracking-tight leading-tight md:text-4xl xl:text-8xl font-medium">
+        <h1 className="text-6xl tracking-tight leading-tight xl:text-8xl font-medium">
           Let&apos;s work together!
         </h1>
         <div className="relative">

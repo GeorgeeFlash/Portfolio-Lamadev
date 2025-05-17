@@ -19,7 +19,7 @@ const ContactPage = () => {
 
   return (
     <motion.div
-      className="h-[80vh] lg:h-[85vh] pb-16"
+      className="h-[85vh] sm:h-[80vh] md:h-[85vh] lg:pb-16"
       initial={{ y: "-200vh" }}
       animate={{ y: "0%" }}
       transition={{ duration: 1 }}
@@ -45,10 +45,10 @@ const ContactPage = () => {
         {/* FORM CONTAINER */}
         <form
           action=""
-          className="lg:w-2/3 bg-red-50 rounded-xl text-xl flex flex-col gap-8 justify-center p-16 lg:p-24"
+          className="lg:w-2/3 bg-red-50 rounded-xl text-sm md:text-lg xl:text-xl flex flex-col gap-8 justify-center p-6 md:p-10 lg:p-24"
         >
           <div className="gap-4 flex flex-col">
-            <label htmlFor="text" className="font-medium text-2xl">
+            <label htmlFor="text" className="font-medium">
               Dear Georgee Flash,
             </label>
             <textarea
@@ -60,7 +60,7 @@ const ContactPage = () => {
             />
           </div>
           <div className="gap-4 flex flex-col">
-            <label htmlFor="email" className="font-medium text-2xl">
+            <label htmlFor="email" className="font-medium">
               My mail address is:
             </label>
             <input
