@@ -11,7 +11,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-import NavLink from "./navLink";
+import NavLink from "./NavLink";
 import WidthWrapper from "@/components/width-wrapper";
 import { cn } from "@/lib/utils";
 
